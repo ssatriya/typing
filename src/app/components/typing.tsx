@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Roboto_Mono } from "next/font/google";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const robotoMono = Roboto_Mono({ subsets: ["latin"], weight: "400" });
 
@@ -63,5 +63,7 @@ const Typing = React.forwardRef((props, ref) => {
     </div>
   );
 });
+
+Typing.displayName = "Typing";
 
 export default Typing;

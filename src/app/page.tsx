@@ -46,7 +46,7 @@ export default function Home() {
           : "text-yellow-300"
       );
     }
-  }, [wordRef.current, currentTyped, currentWord]);
+  }, [wordRef, currentTyped, currentWord]);
 
   React.useEffect(() => {
     const idx = currentTyped.length;
@@ -58,7 +58,7 @@ export default function Home() {
         "text-yellow-300"
       );
     }
-  }, [wordRef.current, currentTyped, currentWord]);
+  }, [wordRef, currentTyped, currentWord]);
 
   React.useEffect(() => {
     let timerId: any;
