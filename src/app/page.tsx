@@ -74,7 +74,7 @@ export default function Home() {
   }, [gameStatus, localTimer, dispatch]);
 
   return (
-    <div className="h-[600px] flex flex-col justify-center items-center">
+    <div className="min-h-screen flex flex-col justify-center items-center">
       <Timer timer={localTimer} />
       <Typing ref={wordRef} />
     </div>

@@ -14,7 +14,7 @@ const Typing = React.forwardRef((props, ref) => {
 
   return (
     <div
-      className={`flex justify-center text-[28px] items-center w-[800px] flex-wrap mt-24 h-[130px] overflow-hidden  ${robotoMono.className}`}
+      className={`flex justify-center text-[28px] items-center w-[800px] flex-wrap mt-6 h-[130px] overflow-hidden  ${robotoMono.className}`}
     >
       {currentWordList.map((word, wordIndex) => {
         //prettier-ignore
