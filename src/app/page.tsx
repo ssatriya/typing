@@ -11,13 +11,24 @@ import { generateWords } from "./lib/generate-words";
 import { setGameStatus } from "@/store/app-slice";
 import { reset } from "./helpers/reset";
 import Timer from "./components/timer";
+import { Loader2Icon, RefreshCw } from "lucide-react";
+import HeaderOptions from "./components/header-options";
 
 export default function Home() {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = React.useState(true);
   const wordRef = React.useRef<HTMLDivElement>(null);
   //prettier-ignore
-  const {currentTyped, currentWord, gameStatus, currentTimer} = useSelector((state: RootState) => state.app)
+  const {currentTyped, currentWord, gameStatus, currentTimer, currentWordList} = useSelector((state: RootState) => state.app)
   const [localTimer, setLocalTimer] = React.useState<number>(currentTimer);
+
+  React.useEffect(() => {
+    if (currentWordList.length === 0) {
+      setIsLoading(true);
+    } else {
+      setIsLoading(false);
+    }
+  }, [currentWordList]);
 
   React.useEffect(() => {
     generateWords();
@@ -74,9 +85,30 @@ export default function Home() {
   }, [gameStatus, localTimer, dispatch]);
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center">
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      <HeaderOptions />
       <Timer timer={localTimer} />
-      <Typing ref={wordRef} />
+      {isLoading ? (
+        <div className="h-[130px] mt-6 flex items-center justify-center">
+          <Loader2Icon className="w-8 h-8 animate-spin" />
+        </div>
+      ) : (
+        <Typing ref={wordRef} />
+      )}
+      <div className="mt-12">
+        <button
+          onClick={() => reset()}
+          className="px-8 py-4 border-2 border-gray-500 rounded-xl"
+        >
+          <RefreshCw className="w-4 h-4" />
+        </button>
+      </div>
+      <div className="mt-32">
+        <p className="text-xs">
+          <kbd className="py-[2px] px-1 bg-gray-600 rounded-sm">Shift</kbd> to
+          reset
+        </p>
+      </div>
     </div>
   );
 }
