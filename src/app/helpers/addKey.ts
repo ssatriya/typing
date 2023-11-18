@@ -8,7 +8,7 @@ import {
 export const registerKey = (key: string, wordRef: any) => {
   const { dispatch, getState } = store;
   //prettier-ignore
-  const {app :{ currentTyped} } = getState()
+  const {app :{ currentTyped, gameStatus} } = getState()
 
   if (key === " ") {
     const currentWordElement = wordRef.current;
@@ -20,7 +20,9 @@ export const registerKey = (key: string, wordRef: any) => {
 
   if (key.length === 1) {
     if (key === " ") return;
-    dispatch(setGameStatus("run"));
-    dispatch(setCurrentTyped(currentTyped + key));
+    if (gameStatus !== "finish") {
+      dispatch(setGameStatus("run"));
+      dispatch(setCurrentTyped(currentTyped + key));
+    }
   }
 };

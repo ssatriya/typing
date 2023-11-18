@@ -2,6 +2,8 @@ import {
   setCurrentTyped,
   setCurrentWord,
   resetWordHistory,
+  setGameStatus,
+  setCurrentTimer,
 } from "@/store/app-slice";
 import { store } from "@/store/store";
 import { generateWords } from "../lib/generate-words";
@@ -11,11 +13,14 @@ export const reset = () => {
   const {
     app: { currentTyped, currentWord, typedHistory },
   } = getState();
+
   generateWords();
 
   dispatch(setCurrentTyped(""));
   dispatch(setCurrentWord(0));
   dispatch(resetWordHistory([]));
+  dispatch(setGameStatus("ready"));
+  dispatch(setCurrentTimer(30));
 
   document
     .querySelectorAll(".text-red-500")

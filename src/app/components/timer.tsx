@@ -8,7 +8,7 @@ const inter = Inter({
 const Timer = ({ timer }: { timer: number }) => {
   return (
     <div className={`w-[800px] flex items-start ${inter.className}`}>
-      <p className="text-xl font-semibold">{timer}</p>
+      <p className="text-xl font-semibold tabular-nums">{timer} s</p>
     </div>
   );
 };

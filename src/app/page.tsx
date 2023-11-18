@@ -13,6 +13,7 @@ import { reset } from "./helpers/reset";
 import Timer from "./components/timer";
 import { Loader2Icon, RefreshCw } from "lucide-react";
 import HeaderOptions from "./components/header-options";
+import Result from "./components/result";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ export default function Home() {
         reset();
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   React.useEffect(() => {
@@ -77,23 +79,32 @@ export default function Home() {
       timerId = setInterval(() => {
         setLocalTimer((prev) => prev - 1);
       }, 1000);
+    } else if (gameStatus === "ready") {
+      setLocalTimer(currentTimer);
     } else if (localTimer === 0) {
       dispatch(setGameStatus("finish"));
     }
 
     return () => clearInterval(timerId);
-  }, [gameStatus, localTimer, dispatch]);
+  }, [gameStatus, localTimer, dispatch, currentTimer]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <HeaderOptions />
-      <Timer timer={localTimer} />
+      <div className="flex items-center justify-between">
+        <Timer timer={localTimer} />
+        <div className="text-xl font-semibold">
+          <p>{gameStatus.slice(0, 1).toUpperCase() + gameStatus.slice(1)}</p>
+        </div>
+      </div>
       {isLoading ? (
         <div className="h-[130px] mt-6 flex items-center justify-center">
           <Loader2Icon className="w-8 h-8 animate-spin" />
         </div>
-      ) : (
+      ) : gameStatus !== "finish" ? (
         <Typing ref={wordRef} />
+      ) : (
+        <Result />
       )}
       <div className="mt-12">
         <button
@@ -109,6 +120,8 @@ export default function Home() {
           reset
         </p>
       </div>
+      {/*  */}
+      <Result />
     </div>
   );
 }
