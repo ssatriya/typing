@@ -93,8 +93,10 @@ export default function Home() {
       <HeaderOptions />
       <div className="flex items-center justify-between">
         <Timer timer={localTimer} />
-        <div className="text-xl font-semibold">
-          <p>{gameStatus.slice(0, 1).toUpperCase() + gameStatus.slice(1)}</p>
+        <div className="w-16">
+          <p className="text-xl font-semibold opacity-70">
+            {gameStatus.slice(0, 1).toUpperCase() + gameStatus.slice(1)}
+          </p>
         </div>
       </div>
       {isLoading ? (
@@ -120,8 +122,6 @@ export default function Home() {
           reset
         </p>
       </div>
-      {/*  */}
-      <Result />
     </div>
   );
 }

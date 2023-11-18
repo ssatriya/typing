@@ -1,8 +1,8 @@
 import Providers from "./components/providers";
 import "./globals.css";
-import { Inter } from "next/font/google";
+import { Inter, Roboto_Mono } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const robotoMono = Roboto_Mono({ subsets: ["latin"], weight: "400" });
 
 export const metadata = {
   title: "Typing",
@@ -16,8 +16,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Providers>{children}</Providers>
+      <body className={robotoMono.className}>
+        <Providers>
+          <main className="container flex items-center justify-center mx-auto">
+            {children}
+          </main>
+        </Providers>
       </body>
     </html>
   );

@@ -11,7 +11,7 @@ import { generateWords } from "../lib/generate-words";
 export const reset = () => {
   const { dispatch, getState } = store;
   const {
-    app: { currentTyped, currentWord, typedHistory },
+    app: { currentTyped, currentWord, typedHistory, currentTimer },
   } = getState();
 
   generateWords();
@@ -20,7 +20,7 @@ export const reset = () => {
   dispatch(setCurrentWord(0));
   dispatch(resetWordHistory([]));
   dispatch(setGameStatus("ready"));
-  dispatch(setCurrentTimer(30));
+  dispatch(setCurrentTimer(currentTimer));
 
   document
     .querySelectorAll(".text-red-500")
