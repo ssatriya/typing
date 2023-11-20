@@ -99,15 +99,18 @@ export default function Home() {
           </p>
         </div>
       </div>
-      {isLoading ? (
-        <div className="h-[130px] mt-6 flex items-center justify-center">
-          <Loader2Icon className="w-8 h-8 animate-spin" />
-        </div>
-      ) : gameStatus !== "finish" ? (
-        <Typing ref={wordRef} />
-      ) : (
-        <Result />
-      )}
+      <div className="h-[140px]">
+        {isLoading ? (
+          <div className="flex items-center justify-center mt-6">
+            <Loader2Icon className="w-8 h-8 animate-spin" />
+          </div>
+        ) : gameStatus !== "finish" ? (
+          <Typing ref={wordRef} />
+        ) : (
+          <Result />
+        )}
+      </div>
+
       <div className="mt-12">
         <button
           onClick={() => reset()}
