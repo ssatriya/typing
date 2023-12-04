@@ -89,42 +89,47 @@ export default function Home() {
   }, [gameStatus, localTimer, dispatch, currentTimer]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
-      <HeaderOptions />
-      <div className="flex items-center justify-between">
-        <Timer timer={localTimer} />
-        <div className="w-16">
-          <p className="text-xl font-semibold opacity-70">
-            {gameStatus.slice(0, 1).toUpperCase() + gameStatus.slice(1)}
+    <>
+      <div className="flex items-center justify-center min-h-screen lg:hidden">
+        <p>Not supported in mobile device, please open with computer.</p>
+      </div>
+      <div className="flex-col items-center justify-center hidden min-h-screen lg:flex">
+        <HeaderOptions />
+        <div className="flex items-center justify-between">
+          <Timer timer={localTimer} />
+          <div className="w-16">
+            <p className="text-xl font-semibold opacity-70">
+              {gameStatus.slice(0, 1).toUpperCase() + gameStatus.slice(1)}
+            </p>
+          </div>
+        </div>
+        <div className="h-[140px]">
+          {isLoading ? (
+            <div className="flex items-center justify-center mt-6">
+              <Loader2Icon className="w-8 h-8 animate-spin" />
+            </div>
+          ) : gameStatus !== "finish" ? (
+            <Typing ref={wordRef} />
+          ) : (
+            <Result />
+          )}
+        </div>
+
+        <div className="mt-12">
+          <button
+            onClick={() => reset()}
+            className="px-8 py-4 border-2 border-gray-500 rounded-xl"
+          >
+            <RefreshCw className="w-4 h-4" />
+          </button>
+        </div>
+        <div className="mt-32">
+          <p className="text-xs">
+            <kbd className="py-[2px] px-1 bg-gray-600 rounded-sm">Shift</kbd> to
+            reset
           </p>
         </div>
       </div>
-      <div className="h-[140px]">
-        {isLoading ? (
-          <div className="flex items-center justify-center mt-6">
-            <Loader2Icon className="w-8 h-8 animate-spin" />
-          </div>
-        ) : gameStatus !== "finish" ? (
-          <Typing ref={wordRef} />
-        ) : (
-          <Result />
-        )}
-      </div>
-
-      <div className="mt-12">
-        <button
-          onClick={() => reset()}
-          className="px-8 py-4 border-2 border-gray-500 rounded-xl"
-        >
-          <RefreshCw className="w-4 h-4" />
-        </button>
-      </div>
-      <div className="mt-32">
-        <p className="text-xs">
-          <kbd className="py-[2px] px-1 bg-gray-600 rounded-sm">Shift</kbd> to
-          reset
-        </p>
-      </div>
-    </div>
+    </>
   );
 }
