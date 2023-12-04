@@ -1,12 +1,10 @@
-# Twitter Clone App 🚀
+# Typing App 🚀
 
 This project is inspired by [Monkey Type](https://monkeytype.com/). Check your typing skill and get the accuracy and word per minute figure.
 
 ## Tech Stack 🛠️
 
 - **Frontend:** React, [Redux Toolkit](https://redux-toolkit.js.org/) for state management and [Tailwind CSS](https://tailwindcss.com/) for styling.
-
-## TODO 📝
 
 ## Getting Started 🚀
 
