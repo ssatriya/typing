@@ -4,7 +4,9 @@ This project is inspired by [Monkey Type](https://monkeytype.com/). Check your t
 
 ## Tech Stack 🛠️
 
-- **Frontend:** React, [Redux Toolkit](https://redux-toolkit.js.org/) for state management and [Tailwind CSS](https://tailwindcss.com/) for styling.
+- [Nextjs](https://nextjs.org/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
 ## Getting Started 🚀
 
